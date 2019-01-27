@@ -55,7 +55,7 @@ export default {
         justify-content: space-between;
         align-items: center;
         .head-left{
-            width: 0.4rem;
+            width: auto;
             height: 0.3rem;
             display: flex;
             flex-direction: column;
