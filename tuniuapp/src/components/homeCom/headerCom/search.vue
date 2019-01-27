@@ -50,7 +50,8 @@ export default {
             console.log(item,'以此字符串向后台发送数据')
         },
         emtypAction(){
-            this.str=''
+            this.str='';
+           localStorage.setItem('taken','[]');
         }
     },
     created(){
