@@ -20,7 +20,6 @@ export default {
   display: flex;
   .tab {
     flex: 1;
-    text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

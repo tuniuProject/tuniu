@@ -12,7 +12,8 @@ export default new Router({
     mine,
     {
       path: '/',
-      component: () => import('../pages/home')
+      redirect:'/home'
+      // component: () => import('../pages/home')
     }
   ]
 })

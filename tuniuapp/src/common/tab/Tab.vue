@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .tab {
   span {
-    font-size: 0.08rem;
+    font-size: 0.1rem;
   }
 }
 .router-link-active {
