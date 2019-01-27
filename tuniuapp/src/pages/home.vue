@@ -1,12 +1,22 @@
 <template>
   <div class="home">
-    <header>这里是首页</header>
+
+    <Header/>
   </div>
 </template>
 
 <script>
-export default {};
+import Header from '../components/homeCom/header'
+export default {
+  components:{
+    Header
+  }
+};
 </script>
 
 <style>
+.home{
+  width: 100%;
+  height: 100%;
+}
 </style>

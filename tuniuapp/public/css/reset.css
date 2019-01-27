@@ -31,9 +31,10 @@ html,
 body {
 	width: 100%;
 	height: 100%;
-	font-size: 0.11rem;
+	font-size: 0.085rem;
 	color: #353535;
 	font-family: "微软雅黑";
+	background-color: white;																
 }
 
 div,
@@ -69,7 +70,9 @@ img,
 fieldset {
 	border: 0;
 }
-
+h1,h2,h3,h4,h5,h6{
+	font-weight: normal;
+}
 .clearfix:after {
 	content: ' ';
 	display: block;
