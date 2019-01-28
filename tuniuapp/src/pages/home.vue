@@ -1,24 +1,23 @@
 <template>
   <div class="home">
-
     <Header/>
-    <Banner/>
+    <Content/>
   </div>
 </template>
 
 <script>
-import Header from '../components/homeCom/header'
-import Banner from '../components/homeCom/banner';
+import Header from "../components/homeCom/header";
+import Content from "../components/homeCom/homeContent";
 export default {
-  components:{
+  components: {
     Header,
-    Banner
+    Content
   }
 };
 </script>
 
 <style>
-.home{
+.home {
   width: 100%;
   height: 100%;
 }

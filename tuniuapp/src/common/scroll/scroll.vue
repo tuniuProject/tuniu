@@ -52,12 +52,14 @@ export default {
   },
   mounted() {
     this.scroll = new BScroll(this.$refs.scroll, {
-      click: true,
+     mouseWheel: true,
+      tap: true,
+      click:true,
       // scrollbars: true,
       // fadeScrollbars: true,
       // freeScroll: true,
       startY: this.forword ? -50 : 0,
-      probeType: 2
+      probeType: 1
     });
 
     this.scroll.on("beforeScrollStart", () => {

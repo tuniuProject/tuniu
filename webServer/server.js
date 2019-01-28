@@ -17,13 +17,13 @@ server.get(api.HOME_BANNER, (req, res) => {
             img: "@image('375x200','@color()')"
         }]
     })
-    var arr=['团建','亲子主题房','发现好去处'];
+    var arr = ['团建', '亲子主题房', '发现好去处'];
     for (var i = 0; i < arr.length; i++) {
-        　　(function (i) {
-            data.num1[i].name=arr[i];
+        (function (i) {
+            data.num1[i].name = arr[i];
             console.log(arr[i])
-            })(i);
-        }
+        })(i);
+    }
     res.json({ //发送json数据
         message: 'ok',
         status: 0,
