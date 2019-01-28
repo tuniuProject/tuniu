@@ -32,7 +32,7 @@ const server = express(); //开启服务器
 //         'type|1': ['爱情', '战争', '动画', '恐怖', '悬疑', '校园', '生活']
 //     }]
 // })
-server.get(api.HOME_BANNER, (req, res) => { 
+server.get(api.HOME_BANNER, (req, res) => {
     console.log('得到请求');
     console.log(req.url)
     var data = mock({
@@ -41,13 +41,13 @@ server.get(api.HOME_BANNER, (req, res) => {
             'img': "@image('375x200','@color()','@string()')"
         }]
     })
-    var arr=['团建','亲子主题房','发现好去处'];
+    var arr = ['团建', '亲子主题房', '发现好去处'];
     for (var i = 0; i < arr.length; i++) {
-        　　(function (i) {
-            data.num1[i].name=arr[i];
+        (function (i) {
+            data.num1[i].name = arr[i];
             console.log(arr[i])
-            })(i);
-        }
+        })(i);
+    }
     res.json({ //发送json数据
         message: 'ok',
         status: 0,

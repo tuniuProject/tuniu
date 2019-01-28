@@ -10,43 +10,43 @@
 </template>
 
 <script>
-import {getHomeBanner} from '../../services/homeServices.js';
+import { getHomeBanner } from "../../services/homeServices.js";
 import Vue from "vue";
 import { Swipe, SwipeItem } from "vant";
 Vue.use(Swipe).use(SwipeItem);
 export default {
-    data(){
-        return{
-            bannerData:""
-        }
-    },
-    methods:{
-        bannerSendAction(id,name){
-            console.log(id,name)
-        }
-    },
-    created(){
-        getHomeBanner().then(data=>{
-            console.log(data);
-            this.bannerData=data.num1
-        })
+  data() {
+    return {
+      bannerData: ""
+    };
+  },
+  methods: {
+    bannerSendAction(id, name) {
+      console.log(id, name);
     }
-}
+  },
+  created() {
+    getHomeBanner().then(data => {
+      console.log(data);
+      this.bannerData = data.num1;
+    });
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-.banner-wrap{
-    position: absolute;
-    top: 0.52rem;
-    left: 0;
-    width: 100%;
-    height: 1.8rem;
+.banner-wrap {
+  position: absolute;
+  top: 0.08rem;
+  left: 0;
+  width: 100%;
+  height: 1.8rem;
 }
-.van-swipe{
-    height: 100%;
+.van-swipe {
+  height: 100%;
 }
-img{
-    width: 100% !important;
-    height: 1.8rem !important;
+img {
+  width: 100% !important;
+  height: 1.8rem !important;
 }
 </style>
