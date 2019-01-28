@@ -2,7 +2,7 @@
    <div class="banner-wrap">
        <van-swipe indicator-color="white" :autoplay="3000">
       <van-swipe-item class="banner" v-for="item in bannerData" :key="item.id">
-        <img :src="item.img" @click="bannerSendAction(item.id,item.name)">
+        <img :src="item.img" @click="bannerSendAction(item.id,item.name,item.img)">
       </van-swipe-item>
     </van-swipe>
    </div>
@@ -21,8 +21,16 @@ export default {
         }
     },
     methods:{
-        bannerSendAction(id,name){
-            console.log(id,name)
+        bannerSendAction(id,name,img){
+            console.log(id,name);
+            this.$router.push({
+                name:"bannerContent",
+                params:{
+                    id,
+                    name,
+                    img
+                }
+            })
         }
     },
     created(){

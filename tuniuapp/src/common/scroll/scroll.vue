@@ -38,14 +38,14 @@ export default {
       if (this.top && this.bottom) {
         return {
           position: "absolute",
-          top: this.top + "px",
-          bottom: this.bottom + "px"
+          top: this.top + "rem",
+          bottom: this.bottom + "rem"
         };
       } else {
         //普通调用滚动视图
         return {
-          width: this.width + "px",
-          height: this.height + "px"
+          width: this.width + "rem",
+          height: this.height + "rem"
         };
       }
     }

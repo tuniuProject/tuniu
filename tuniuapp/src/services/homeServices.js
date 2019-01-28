@@ -15,3 +15,15 @@ export function getHomeBanner() {
   })
     
 }
+//请求轮播图分页数据，需要参数id
+export function getBannerContent(id){
+  return new Promise((resolve,reject)=>{
+    FetchGet(API.BANNER_SUBJECT,{
+      id:id
+    })
+    .then((data)=>{
+      console.log(data);
+      resolve(data)
+    })
+  })
+}
