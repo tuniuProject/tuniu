@@ -48,6 +48,9 @@ server.get(api.BANNER_SUBJECT,(req,res)=>{
        'location|1-4': [{
             cityName() {
                 let result = Random.city();
+                if(result.length>=5){
+                    result =Random.city();
+                }
                 if (result.endsWith('市')) {
                     var arr = result.split('');
                     arr.splice(arr.length - 1, 1);
@@ -77,9 +80,66 @@ server.get(api.BANNER_SUBJECT,(req,res)=>{
 
 
 
-
-
-
+//发现好去处页面的城市数据
+server.get(api.CITY_SPOT,(req,res)=>{
+    var data = mock({
+        'num3|5': [{
+            'id|+1': 0,
+           'location|7': [{
+                cityName() {
+                    let result =Random.city();
+                    if(result.length>=5){
+                        result =Random.city();
+                    }
+                    if (result.endsWith('市')) {
+                        var arr = result.split('');
+                        arr.splice(arr.length - 1, 1);
+                        result = arr.join('');
+                    }
+                    return result;
+                },
+                'cityid|+1': 0,
+            }],
+        }]
+      })
+      var arr = ['浙江', '江苏上海', '四川云南','贵州两广','福建其他'];
+    for (var i = 0; i < arr.length; i++) {
+        (function (i) {
+            data.num3[i].city = arr[i];
+            data.num3[i].location.push({cityName:"更多"})
+        })(i);
+    } 
+    res.json({
+        message: 'ok',
+        status: 0,
+        data:data
+    })
+})
+//请求更多城市的数据
+server.get(api.ELSE_CITY,(req,res)=>{
+    var data = mock({
+            'location|7': [{
+                cityName() {
+                    let result =Random.county();
+                    if(result.length>=5){
+                        result =Random.county();
+                    }
+                    if (result.endsWith('县')) {
+                        var arr = result.split('');
+                        arr.splice(arr.length - 1, 1);
+                        result = arr.join('');
+                    }
+                    return result;
+                }
+            }]    
+      })
+        data.location.push({cityName:"更多"})
+    res.json({
+        message: 'ok',
+        status: 0,
+        data:data
+    })
+})
 
 server.listen(9090, 'localhost', (error) => {
     if (error) {

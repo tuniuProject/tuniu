@@ -1,6 +1,7 @@
 module.exports = {
   presets: [
-    '@vue/app'
+    '@vue/app',
+    ["es2015", { "modules": false }]
   ],
   plugins: [ //使用vant按需引入插件
     ['import', {
@@ -8,5 +9,15 @@ module.exports = {
       libraryDirectory: 'es',
       style: true
     }, 'vant']
+    ,
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ]
   ]
 }
+
+

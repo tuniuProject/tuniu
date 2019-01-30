@@ -55,6 +55,7 @@ export default {
      mouseWheel: true,
       tap: true,
       click:true,
+      preventDefault: true ,
       // scrollbars: true,
       // fadeScrollbars: true,
       // freeScroll: true,

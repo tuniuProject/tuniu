@@ -1,11 +1,36 @@
 <template>
     <div class="bannerContent">
         <Back :data="name"  />
-         <scroller :top="0.44" :bottom="0.0000000001" >
+         <scroller :top="0.44" :bottom="0.0000000001"  >
         <section class="banner">
             <img :src="$route.params.img" />
+            <!-- <span class="title">{{$route.params.name}}</span> -->
         </section>
-        <ul class="list">
+
+        <template>
+        
+    <div class="block" v-if="$route.params.id>=2">
+        <div class="left">
+            <p>入住日期</p>
+    <el-date-picker
+      v-model="value1"
+      type="date"
+      placeholder="选择日期">
+    </el-date-picker>
+        </div>
+        <div class="day">{{day}}</div>
+       <div class="right">
+           <p>离店日期</p>
+     <el-date-picker
+      v-model="value2"
+      type="date"
+      placeholder="选择日期">
+    </el-date-picker>
+       </div>
+  </div>
+  
+        </template>
+        <ul class="list" v-if="$route.params.id<2">
             <li v-for="item in bannerList" :key="item.id" class="item">
                 <div class="top">
                      <p class="people">{{item.people}}</p>
@@ -28,13 +53,15 @@
 
 <script>
 import Back from '../../common/headBack.vue';
-import {getBannerContent} from '../../../services/homeServices.js'
+import {getBannerContent} from '../../../services/homeServices.js';
 export default {
     components:{
-        Back
+        Back,
     },
     data(){
         return{
+           value1: new Date(),
+            value2: new Date(new Date().getTime() + 24*60*60*1000),
             name:'',
             bannerList:[]
         }
@@ -47,8 +74,33 @@ export default {
         })
     },
     methods:{
-       
+          openPicker() {
+      this.$refs.picker.open();
+      console.log(this.pickerValue);
     }
+       
+    },
+    computed:{
+        day(){
+       let day=(this.value2.getTime()-this.value1.getTime())/ (24 * 3600 * 1000)
+      if(Math.floor(day)==0){
+          return '请选择日期'
+      }
+      if(Math.floor(day)<0){
+          this.value2=new Date(new Date().getTime() + 24*60*60*1000);
+      }
+      return '住'+ Math.floor((this.value2.getTime()-this.value1.getTime())/ (24 * 3600 * 1000))+"晚";
+       
+            
+        }
+    },
+    watch:{
+        value1(newVal,oldVal){
+            console.log(newVal.getTime())
+            console.log(oldVal)
+        }
+    }
+
 
 }
 </script>
@@ -144,4 +196,41 @@ export default {
         }
     }
 }
+.title{
+    position: absolute;
+    top: 0.2rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    font-size: 0.14rem;
+    color: #ffffff;
+}
+    .el-date-editor{
+        width: 100% !important;
+        // float: left;
+    }
+   .left{
+       width: 40%;
+       float: left;
+       p{
+           text-align: center;
+           color: #999;
+       }
+   } 
+   .right{
+       width: 40%;
+       float:right;
+       p{
+           text-align: center;
+         color: #999;
+       }
+   }
+   .day{
+       float: left;
+       height: 48px;
+       line-height: 60px;
+       text-align: center;
+       width: 20%;
+   }
 </style>
