@@ -106,7 +106,7 @@ server.get(api.CITY_SPOT,(req,res)=>{
     for (var i = 0; i < arr.length; i++) {
         (function (i) {
             data.num3[i].city = arr[i];
-            data.num3[i].location.push({cityName:"更多"})
+            data.num3[i].location.push({cityName:"更多",cityid:'10000'})
         })(i);
     } 
     res.json({
@@ -115,25 +115,35 @@ server.get(api.CITY_SPOT,(req,res)=>{
         data:data
     })
 })
-//请求更多城市的数据
+//请求更多城市的数据,需要城市列表的id
 server.get(api.ELSE_CITY,(req,res)=>{
+    let {id} = url.parse(req.url, true).query;
+    if(!id){
+        res.json({
+            status: 1,
+            message: '缺少参数',
+            data: null
+        });
+        return;
+    }
     var data = mock({
             'location|7': [{
                 cityName() {
-                    let result =Random.county();
+                    let result =Random.city();
                     if(result.length>=5){
                         result =Random.county();
                     }
-                    if (result.endsWith('县')) {
+                    if (result.endsWith('市')) {
                         var arr = result.split('');
                         arr.splice(arr.length - 1, 1);
                         result = arr.join('');
                     }
                     return result;
-                }
+                },
+                'cityid|+1': 0,
             }]    
       })
-        data.location.push({cityName:"更多"})
+        data.location.push({cityName:"更多",cityid:'10000'})
     res.json({
         message: 'ok',
         status: 0,

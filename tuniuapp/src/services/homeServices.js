@@ -27,3 +27,23 @@ export function getBannerContent(id){
     })
   })
 }
+//请求城市数据(发现好去处)
+export function getCity(){
+  return new Promise((resolve,reject)=>{
+    FetchGet(API.CITY_SPOT)
+    .then((data)=>{
+      resolve(data)
+    })
+  })
+}
+//请求更多城市的数据
+export function getMoreCity(id){
+  return new Promise((resolve,reject)=>{
+    FetchGet(API.ELSE_CITY,{
+      id
+    })
+    .then((data)=>{
+      resolve(data)
+    })
+  })
+}

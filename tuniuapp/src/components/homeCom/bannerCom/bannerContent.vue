@@ -7,9 +7,9 @@
             <!-- <span class="title">{{$route.params.name}}</span> -->
         </section>
 
-        <template>
+        <template v-if="$route.params.id>=2">
         
-    <div class="block" v-if="$route.params.id>=2">
+    <div class="block" >
         <div class="left">
             <p>入住日期</p>
     <el-date-picker
@@ -28,7 +28,15 @@
     </el-date-picker>
        </div>
   </div>
-  
+
+  <p class="city-list">
+      <span v-for="(city,index) in cityList" :key="city.id" @click="changeActive(index)" :class="{active:selectIndex==index}">{{city.city}}</span>
+  </p>
+  <ul class="citys" >
+      <li v-for="(cityItem,index) in citys" :key="cityItem.cityid" :class="{active:citySelectIndex==index}" @click="requestCity(index,cityItem.cityid)">
+          {{cityItem.cityName}}
+      </li>
+  </ul>
         </template>
         <ul class="list" v-if="$route.params.id<2">
             <li v-for="item in bannerList" :key="item.id" class="item">
@@ -42,7 +50,7 @@
                     </ul>
                 </div>
                 <div class="bottom">
-                    <span v-for="title in item.title" :key="title.titleName">{{ title.titleName }}</span>
+                    <span v-for="title in item.title" :key="title.titleName" >{{ title.titleName }}</span>
                 </div>
                 <p class="go">GO »</p>
             </li>
@@ -53,7 +61,7 @@
 
 <script>
 import Back from '../../common/headBack.vue';
-import {getBannerContent} from '../../../services/homeServices.js';
+import {getBannerContent,getCity,getMoreCity} from '../../../services/homeServices.js';
 export default {
     components:{
         Back,
@@ -63,7 +71,10 @@ export default {
            value1: new Date(),
             value2: new Date(new Date().getTime() + 24*60*60*1000),
             name:'',
-            bannerList:[]
+            bannerList:[],
+            cityList:[],
+            selectIndex:0,
+            citySelectIndex:0
         }
     },
     created(){
@@ -72,11 +83,40 @@ export default {
         getBannerContent(this.$route.params.id).then(data=>{
             this.bannerList=data.num2
         })
+        getCity().then(data=>{
+            console.log(data)
+            this.cityList=data.num3
+        })
     },
     methods:{
           openPicker() {
       this.$refs.picker.open();
       console.log(this.pickerValue);
+    },
+    changeActive(index){
+        if(this.selectIndex!=index){
+           this.selectIndex=index;
+        }
+       
+    },
+    requestCity(index,id){
+         if(id==10000){
+            console.log('需要请求更多城市数据')
+            //需要请求更多城市数据，需要当前城市列表的id
+            let id= this.cityList[this.selectIndex].id;
+            getMoreCity(id).then(data=>{
+                console.log(data.location)
+                this.cityList[this.selectIndex].location=data.location
+            })
+            this.citySelectIndex=index;
+            return;
+        }
+        if(this.citySelectIndex!=index){
+            this.citySelectIndex=index;
+          console.log(index,id);
+            //在这里请求酒店列表数据根据传入的id值（城市id）
+        }
+        
     }
        
     },
@@ -92,13 +132,38 @@ export default {
       return '住'+ Math.floor((this.value2.getTime()-this.value1.getTime())/ (24 * 3600 * 1000))+"晚";
        
             
-        }
+        },
+       citys(){
+           switch(this.selectIndex){
+               case 0:
+               return this.cityList[0].location
+               case 1:
+               return this.cityList[1].location
+               case 2:
+               return this.cityList[2].location
+               case 3:
+               return this.cityList[3].location
+               case 4:
+                return this.cityList[4].location
+           }
+       } 
     },
     watch:{
         value1(newVal,oldVal){
             console.log(newVal.getTime())
             console.log(oldVal)
+            if(newVal.getTime()>=this.value2){
+                this.value1=oldVal
+            }
+        },
+        selectIndex(newVal,oldVal){
+            this.citySelectIndex=0;
+               //在这里请求新的酒店列表数据,请求的是第一个城市的酒店列表数据
+             console.log(this.cityList[newVal].location[0].cityid)  
+             console.log(this.cityList[newVal].location[0].cityName)
+             let id=  this.cityList[newVal].location[0].cityid;
         }
+        
     }
 
 
@@ -233,4 +298,49 @@ export default {
        text-align: center;
        width: 20%;
    }
+   .city-list{
+       width: 100%;
+       display: flex;
+       padding: 0.1rem 0;
+       box-sizing: border-box;
+       color: #3b3b3b;
+       font-size: 0.12rem;
+       font-weight: 600;
+       justify-content: space-around;
+       span.active{
+           padding-bottom: 0.05rem;
+           border-bottom: 1px solid salmon;
+       }
+}
+.citys{
+    padding-top: 0.02rem;
+    padding-bottom: 0.125rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 0.05rem;
+    padding-right: 0.05rem;
+    box-sizing: border-box;
+    li{
+        width: 20.1%;
+        text-align: center;
+        padding: 0.02rem 0;
+        background-color: #eef4f8;
+        border-radius: 0.1rem;
+        margin-bottom: 0.08rem;
+     overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    box-sizing: border-box;
+    font-size: 0.11rem;
+    color:#737678;
+    border:1px solid transparent;
+    }
+    li.active{
+        box-sizing: border-box;
+        border: 1px solid #f69f9e;
+        background-color: #fff1f0;
+        color: #d9656b;
+    }
+}
 </style>
