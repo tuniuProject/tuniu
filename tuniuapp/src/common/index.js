@@ -8,7 +8,6 @@ import {
     FetchGet,
     FetchPost
 } from './fetch/index'; //ajax封装函数
-
 export default {
     install(Vue) {
         Vue.component(Tab.name, Tab)

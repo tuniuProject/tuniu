@@ -29,7 +29,7 @@ export default {
             }
             this.$router.push({
                 name:"bannerContent",
-                params:{
+               query:{
                     id,
                     name,
                     img

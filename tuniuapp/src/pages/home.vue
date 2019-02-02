@@ -18,6 +18,7 @@ export default {
 
 <style>
 .home {
+  position: absolute;
   width: 100%;
   height: 100%;
 }

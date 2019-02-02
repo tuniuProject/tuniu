@@ -52,15 +52,12 @@ export default {
   },
   mounted() {
     this.scroll = new BScroll(this.$refs.scroll, {
-     mouseWheel: true,
-      tap: true,
-      click:true,
-      preventDefault: true ,
+      click: true,
       // scrollbars: true,
       // fadeScrollbars: true,
       // freeScroll: true,
       startY: this.forword ? -50 : 0,
-      probeType: 1
+      probeType: 2
     });
 
     this.scroll.on("beforeScrollStart", () => {
@@ -106,6 +103,7 @@ export default {
   overflow: hidden;
   width: 100%;
   left: 0;
+  
 }
 .pull-down {
   width: 100%;

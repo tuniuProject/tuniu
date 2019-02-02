@@ -1,14 +1,13 @@
 <template>
     <div class="bannerContent">
         <Back :data="name"  />
-         <scroller :top="0.44" :bottom="0.0000000001"  >
+     <keep-alive>
+             <scroller :top="0.44" :bottom="0.0000000001"  class="scroll" >
         <section class="banner">
-            <img :src="$route.params.img" />
+            <img :src="$route.query.img" />
             <!-- <span class="title">{{$route.params.name}}</span> -->
         </section>
-
-        <template v-if="$route.params.id>=2">
-        
+ <template v-if="$route.query.id>=2">
     <div class="block" >
         <div class="left">
             <p>入住日期</p>
@@ -28,7 +27,6 @@
     </el-date-picker>
        </div>
   </div>
-
   <p class="city-list">
       <span v-for="(city,index) in cityList" :key="city.id" @click="changeActive(index)" :class="{active:selectIndex==index}">{{city.city}}</span>
   </p>
@@ -37,8 +35,9 @@
           {{cityItem.cityName}}
       </li>
   </ul>
+   <HotelList :data="content"/>
         </template>
-        <ul class="list" v-if="$route.params.id<2">
+        <ul class="list" v-if="$route.query.id<2">
             <li v-for="item in bannerList" :key="item.id" class="item">
                 <div class="top">
                      <p class="people">{{item.people}}</p>
@@ -52,19 +51,23 @@
                 <div class="bottom">
                     <span v-for="title in item.title" :key="title.titleName" >{{ title.titleName }}</span>
                 </div>
-                <p class="go">GO »</p>
+                <p class="go" @click="titleAction(item.id,item.people)">GO »</p>
             </li>
         </ul>
         </scroller>
+     </keep-alive>
+     <router-view/>
     </div>
 </template>
 
 <script>
 import Back from '../../common/headBack.vue';
-import {getBannerContent,getCity,getMoreCity} from '../../../services/homeServices.js';
+import {getBannerContent,getCity,getMoreCity,getHtoalContent} from '../../../services/homeServices.js';
+import HotelList from "../hotelList";
 export default {
     components:{
         Back,
+        HotelList
     },
     data(){
         return{
@@ -74,18 +77,22 @@ export default {
             bannerList:[],
             cityList:[],
             selectIndex:0,
-            citySelectIndex:0
+            citySelectIndex:0,
+            content:[]
         }
     },
     created(){
-        this.name= this.$route.params.name;
-        console.log(this.name,this.$route.params);
-        getBannerContent(this.$route.params.id).then(data=>{
+        this.name= this.$route.query.name;
+        console.log(this.name,this.$route.query);
+        getBannerContent(this.$route.query.id).then(data=>{
             this.bannerList=data.num2
         })
         getCity().then(data=>{
             console.log(data)
             this.cityList=data.num3
+        })
+         getHtoalContent(0).then(data=>{
+                this.content=data.num5
         })
     },
     methods:{
@@ -115,8 +122,22 @@ export default {
             this.citySelectIndex=index;
           console.log(index,id);
             //在这里请求酒店列表数据根据传入的id值（城市id）
+            getHtoalContent(id).then(data=>{
+                 this.content=data.num5
+                 console.log(this.content)
+             })
         }
         
+    },
+    titleAction(id,name){
+        console.log(id,name)
+        this.$router.push({
+            name:'bannerChild',
+            query:{
+                id:id,
+                name:name
+            }
+        })
     }
        
     },
@@ -162,6 +183,10 @@ export default {
              console.log(this.cityList[newVal].location[0].cityid)  
              console.log(this.cityList[newVal].location[0].cityName)
              let id=  this.cityList[newVal].location[0].cityid;
+             getHtoalContent(id).then(data=>{
+                 this.content=data.num5
+                 console.log(this.content)
+             })
         }
         
     }

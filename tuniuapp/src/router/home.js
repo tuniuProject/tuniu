@@ -15,8 +15,13 @@ export default {
             name:'bannerContent',
             props:true,
             component:()=>import('../components/homeCom/bannerCom/bannerContent.vue')
-        }
-        
+        },
+        {
+            path:"bannerChild",
+            name:'bannerChild',
+            props:true,
+            component:()=>import('../components/homeCom/bannerCom/bannerChild.vue')
+        }        
     
     ]
 }

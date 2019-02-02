@@ -150,7 +150,45 @@ server.get(api.ELSE_CITY,(req,res)=>{
         data:data
     })
 })
+//请求酒店列表的数据
+server.get(api.HTOAL_LIST,(req,res)=>{
+    let {id} = url.parse(req.url, true).query;
+    if(!id){
+        res.json({
+            status: 1,
+            message: '缺少参数',
+            data: null
+        });
+        return;
+    }
+    var data = mock({
+        'num5|10-15': [{
+            'id|+1': 0,
+            img: "@image('375x200','@color()')",
+            picle:function(){
+                let pic=Random.natural( 300, 1000 )
+                return pic
+            },
+            'name|1':function(){
+                let i=Random.ctitle( 4, 12 );
+                return i
+            },
+            tag:['Time特权','会员商户'],
+            'title|2-4':[{
+               titleName(){
+                   let tit ='#'+ Random.ctitle( 2, 4 );
+                   return tit
+               }
+            }],
+        }]
+      })
+      res.json({
+        message: 'ok',
+        status: 0,
+        data:data
+    })
 
+})
 server.listen(9090, 'localhost', (error) => {
     if (error) {
         console.log('启动失败');

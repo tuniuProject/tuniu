@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
+    
     <tab-bar>
       <tab-item v-for="item in tabList" :key="item.name" :info="item" ref="tab-item"></tab-item>
     </tab-bar>

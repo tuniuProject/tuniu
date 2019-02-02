@@ -47,3 +47,14 @@ export function getMoreCity(id){
     })
   })
 }
+//请求酒店列表数据
+export function getHtoalContent(id=0){
+  return new Promise((resolve,reject)=>{
+    FetchGet(API.HTOAL_LIST,{
+      id
+    })
+    .then(data=>{
+      resolve(data)
+    })
+  })
+}
