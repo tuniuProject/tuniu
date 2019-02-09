@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-// import mineHome from "./components/mineCom/identity";
+// import mineHome from "./components/mineCom/pay";
 export default {
   components: {
     // mineHome
