@@ -7,10 +7,15 @@
     <tab-bar>
       <tab-item v-for="item in tabList" :key="item.name" :info="item" ref="tab-item"></tab-item>
     </tab-bar>
+    <!-- <mineHome/> -->
   </div>
 </template>
 <script>
+// import mineHome from "./components/mineCom/mineHome";
 export default {
+  components: {
+    // mineHome
+  },
   data() {
     return {
       tabList: [
