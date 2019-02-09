@@ -6,6 +6,8 @@ import common from './common/index';
 import "mint-ui/lib/style.css"
 import 'vant/lib/index.css'
 import 'element-ui/lib/theme-chalk/index.css';
+import center from './common/center';
+Vue.prototype.$center=center;
 Vue.use(common);
 Vue.prototype.$ELEMENT = { size:'small', zIndex: 3000 };
 Vue.config.productionTip = false;

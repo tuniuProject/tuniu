@@ -22,6 +22,10 @@ export default {
         height: 0.44rem;
         display: flex;
         align-items: center;
+        position: fixed;
+        top:0;
+        z-index: 6;
+        background-color: #ffffff;
         img{
             width: 0.20rem;
             height: 0.16rem;

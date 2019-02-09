@@ -1,7 +1,7 @@
 <template>
     <div class="bannerChild">
         <Back :data="$route.query.name"/>
-        <HotelList :data="content"/>
+        <HotelList :data="content" :top="0.44" :pos="true" />
     </div>
 </template>
 
