@@ -16,39 +16,38 @@ import Vue from "vue";
 import { Swipe, SwipeItem } from "vant";
 Vue.use(Swipe).use(SwipeItem);
 export default {
-    data(){
-        return{
-            bannerData:"",
-            selectIndex:0
+  data() {
+    return {
+      bannerData: "",
+      selectIndex: 0
+    };
+  },
+  methods: {
+    bannerSendAction(id, name, img, event) {
+      if (!event._constructed) {
+        return;
+      }
+      this.$router.push({
+        name: "bannerContent",
+        query: {
+          id,
+          name,
+          img
         }
+      });
     },
-    methods:{
-        bannerSendAction(id,name,img,event){
-            if(!event._constructed){
-                return
-            }
-            this.$router.push({
-                name:"bannerContent",
-               query:{
-                    id,
-                    name,
-                    img
-                }
-            })
-        },
-        onChange(index){
-            // console.log(index)
-            this.selectIndex=index
-        }
-    },
-    created(){
-        getHomeBanner().then(data=>{
-            console.log(data);
-            this.bannerData=data.num1
-        })
+    onChange(index) {
+      // console.log(index)
+      this.selectIndex = index;
     }
+  },
+  created() {
+    getHomeBanner().then(data => {
+      console.log(data);
+      this.bannerData = data.num1;
+    });
   }
-;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -60,7 +59,7 @@ export default {
   height: 1.8rem;
   padding-left: 0.17rem;
   padding-right: 0.17rem;
-  box-sizing: border-box;  
+  box-sizing: border-box;
 }
 .van-swipe {
   height: 100%;
@@ -69,14 +68,14 @@ export default {
   width: 100% !important;
   height: 1.8rem !important;
 }
-.title{
-    position: absolute;
-    top: 0.2rem;
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin: auto;
-    font-size: 0.14rem;
-    color: #ffffff;
+.title {
+  position: absolute;
+  top: 0.2rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  font-size: 0.14rem;
+  color: #ffffff;
 }
 </style>
