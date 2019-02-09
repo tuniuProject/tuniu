@@ -155,9 +155,6 @@ export default {
             margin-right: 1.1rem;
             margin-left: 1.3rem;
         }
-        img{
-            // margin-left: 1rem;
-        }
     }
     form{
         width: 3.44rem;
