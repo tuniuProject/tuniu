@@ -7,14 +7,14 @@
     <tab-bar>
       <tab-item v-for="item in tabList" :key="item.name" :info="item" ref="tab-item"></tab-item>
     </tab-bar>
-    <!-- <login/> -->
+    <!-- <mineHome/> -->
   </div>
 </template>
 <script>
-// import login from "./components/mineCom/login";
+// import mineHome from "./components/mineCom/mineHome";
 export default {
   components: {
-    // login
+    // mineHome
   },
   data() {
     return {
@@ -38,11 +38,11 @@ export default {
 </script>
 
 <style lang="scss">
-// #app {
-//   width: 100%;
-//   height: 100%;
-//   position: absolute;
-//   left: 0;
-//   top: 0;
-// }
+#app {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 </style>
