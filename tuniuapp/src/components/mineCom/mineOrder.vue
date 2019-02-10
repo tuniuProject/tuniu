@@ -29,22 +29,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ul {
+#order {
   width: 100%;
-  height: 0.44rem;
-  display: flex;
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 1;
-  li {
-    flex: 1;
-    text-align: center;
-    line-height: 0.44rem;
-  }
-  .active {
-    color: red;
-    border-bottom: 1px solid red;
+  bottom: 0;
+  background: white;
+  ul {
+    width: 100%;
+    height: 0.44rem;
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    li {
+      flex: 1;
+      text-align: center;
+      line-height: 0.44rem;
+    }
+    .active {
+      color: red;
+      border-bottom: 1px solid red;
+    }
   }
 }
 </style>

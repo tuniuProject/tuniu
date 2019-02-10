@@ -1,21 +1,21 @@
 <template>
   <div class="mine">
-    <!-- <header>这里是个人</header> -->
     <Login/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Login from '../components/mineCom/login.vue';
+import Login from "../components/mineCom/login.vue";
 export default {
-  components:{
+  components: {
     Login
   }
 };
 </script>
 
 <style>
-.mine{
+.mine {
   position: absolute;
   width: 100%;
   height: 100%;

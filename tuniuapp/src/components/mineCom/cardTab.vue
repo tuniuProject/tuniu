@@ -36,6 +36,7 @@ ul {
   left: 0;
   top: 0;
   z-index: 1;
+  background: white;
   li {
     flex: 1;
     text-align: center;

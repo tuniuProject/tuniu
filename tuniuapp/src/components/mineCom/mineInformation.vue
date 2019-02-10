@@ -40,6 +40,7 @@ export default {};
 
 <style lang="scss" scoped>
 #mine-info {
+  z-index: 1;
   width: 100%;
   position: absolute;
   left: 0;

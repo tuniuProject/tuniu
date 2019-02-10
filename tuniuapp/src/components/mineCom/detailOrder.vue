@@ -1,4 +1,5 @@
 <template>
+<div id="adetail">
     <div id="detail">
         <ul>
             <li class="first">
@@ -15,6 +16,7 @@
             </li>
         </ul>
     </div>
+</div>   
 </template>
 
 <script>
@@ -22,34 +24,40 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-#detail {
-  width: 90%;
-  height: 1.33rem;
+#adetail {
   position: absolute;
-  left: 0;
-  top: 0;
+  width: 100%;
+  height: 100%;
   background: white;
-  ul {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.12rem;
-    li {
-      flex: 1;
+  #detail {
+    width: 90%;
+    height: 1.33rem;
+    position: absolute;
+    left: 0.2rem;
+    top: 0;
+    background: white;
+    ul {
+      height: 100%;
       display: flex;
-      border-bottom: 1px solid gray;
-      align-items: center;
-      h1 {
-        font-size: 0.12rem;
+      flex-direction: column;
+      font-size: 0.12rem;
+      li {
+        flex: 1;
+        display: flex;
+        border-bottom: 1px solid gray;
+        align-items: center;
+        h1 {
+          font-size: 0.12rem;
+        }
       }
-    }
-    .last {
-      border-bottom: none;
-    }
-    .first {
-      h1 {
-        position: absolute;
-        right: 0.2rem;
+      .last {
+        border-bottom: none;
+      }
+      .first {
+        h1 {
+          position: absolute;
+          right: 0.2rem;
+        }
       }
     }
   }

@@ -1,51 +1,51 @@
 <template>
     <div id="mine-home">
-        <div class="mine">
+        <div class="amine">
             <div class="xinxi">
                 <div>
                     <h1>杜sir</h1>
                     <img src="/icon/huiyuanka.svg" alt="">
                 </div> 
                 <span>ID:111111</span>
-                <p>编辑个人信息 ></p>
+                <p @click="mineinfo">编辑个人信息 ></p>
             </div>
             <div class="tupian">
                 <img src="/icon/yijiedan.svg" alt="">
             </div>
         </div>
         <div class="center">
-            <span>加入time卡会员 全场预定5折起</span>
-            <a href="">查看特权 ></a>
+            <span @click="pay">加入time卡会员 全场预定5折起</span>
+            <a href="#">查看特权 ></a>
             <div class="box">
                 <div class="box1">
                     <p>0</p>
-                    <span>卡券</span>
+                    <span @click="card">卡券</span>
                 </div>
                 <div class="box2">
                     <p>0</p>
-                    <span>收藏</span>
+                    <span @click="list">收藏</span>
                 </div>
             </div>
         </div>
         <div class="main">
             <div class="main-top">
-                <span>我的订单</span>
-                <p class="dingdan">查看全部订单</p>
+                <span @click="order">我的订单</span>
+                <p class="dingdan" @click="order">查看全部订单</p>
             </div>
             <ul>
-                <li>
+                <li @click="fukuan">
                     <img src="/icon/daifukuan.svg" alt="">
                     <span>待付款</span>
                 </li>
-                <li>
+                <li @click="fukuan">
                     <img src="/icon/chulizhong.svg" alt="">
                     <span>处理中</span>
                 </li>
-                <li>
+                <li @click="fukuan">
                     <img src="/icon/yijiedan.svg" alt="">
                     <span>已接单</span>
                 </li>
-                <li>
+                <li @click="fukuan">
                     <img src="/icon/yiwancheng.svg" alt="">
                     <span>已完成</span>
                 </li>
@@ -60,19 +60,51 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    mineinfo() {
+      this.$router.push({
+        path: "mineinfo"
+      });
+    },
+    pay() {
+      this.$router.push({
+        path: "pay"
+      });
+    },
+    card() {
+      this.$router.push({
+        path: "card"
+      });
+    },
+    list() {
+      this.$router.push({
+        path: "cardList"
+      });
+    },
+    order() {
+      this.$router.push({
+        path: "order"
+      });
+    },
+    fukuan() {
+      this.$router.push({
+        path: "fukuan"
+      });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 #mine-home {
-  z-index: 1;
   background: white;
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0.49rem;
   width: 100%;
-  .mine {
+  .amine {
     width: 100%;
     height: 2.32rem;
     background: gray;
