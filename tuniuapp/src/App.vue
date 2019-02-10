@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import mineHome from "./components/mineCom/cardTab";
+import mineHome from "./components/mineCom/cardTabContent";
 export default {
   components: {
     mineHome
